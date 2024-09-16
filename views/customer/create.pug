@@ -1,0 +1,31 @@
+extends ../layout
+
+block content 
+    h1= title 
+    form(action='/customer/create', method='post', enctype='multipart/form-data')
+        div 
+            label(for='fullname') Full name 
+            input(type='text', name="fullname", id='fullname')
+        if errors 
+            each error in errors 
+                if error.path === 'fullname'
+                    span= error.msg
+        div 
+            label(for='email') Email
+            input(type='text', name="email", id='email')
+        if errors 
+            each error in errors 
+                if error.path === 'email'
+                    span= error.msg
+        div 
+            label(for='password') Password 
+            input(type='password', name="password", id='password')
+        if errors 
+            each error in errors 
+                if error.path === 'password'
+                    span= error.msg
+        div 
+            label(for='image') Image 
+            input(type='file', name="image", id='image')
+        div 
+            input(type="submit", value='Create')
