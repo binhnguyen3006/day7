@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const customerModel = require("multer");
+const customerModel = require("../models/customer.moldel");
 const multer = require("multer");
 const { body, validationResult } = require("express-validator");
 
@@ -41,7 +41,7 @@ router.post('/create',[
     {
       return res.render("customer/create",{
         title: " Create customer",
-        errors: errors.arrays(),
+        errors: errors.array(),
       });
     }
   let cust = new customerMoldel(req.body);

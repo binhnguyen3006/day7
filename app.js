@@ -9,8 +9,9 @@ var usersRouter = require('./routes/users');
 var customerRouter = require('./routes/customer');
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/demo");
-
+//mongoose.connect("mongodb://localhost:27017/demo");
+mongoose.connect("mongodb+srv://Nguyen:300605Nguyen@democustomerdb.baos1.mongodb.net/?retryWrites=true&w=majority&appName=demoCustomerDB")
+.then(()=> console.log("connected to db"));
 var app = express();
 
 // view engine setup

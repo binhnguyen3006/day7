@@ -1,31 +1,39 @@
 extends ../layout
+
 block content
-    h4 
-        a(href=`/customer/create/${cust._id}`) create 
-    h1 = title 
-    form(action=`/customer/search`)
-    label(for='keyword') Keyword 
-    input(type="text", name='keyword')
-    input(type='submit', value=" search")
+    h1= title
+    h4
+        a(href="/customer/create") Create New Customer
+
+    form(action="/customer/search", method="GET")
+        label(for="keyword") Keyword: 
+        input(type="text", name="keyword", id="keyword")
+        input(type="submit", value="Search")
+
     table 
         thead 
-        tr 
-            th Id 
-            th Fullname 
-            th Email 
-            th Image 
-            th Actions 
+            tr 
+                th Id 
+                th Fullname
+                th Email 
+                th Image
+                th Actions
         tbody 
-            if  customers.length > 0
+            if customers && customers.length > 0
                 each cust in customers 
-                tr 
-                 td=cust._id 
-                 td=cust.fullname 
-                 td=cust.email 
-                 td=cust.image 
-                 td 
-                    a(href=`/customer/update/${cust._id}`) Update 
-                    a(href=`/customer/delete/${cust._id}`) Delete
+                    tr 
+                        td= cust._id 
+                        td= cust.fullname 
+                        td= cust.email 
+                        td
+                            if cust.image
+                                img(src="/images/" + cust.image, alt=cust.fullname, width="50")
+                            else
+                                | No image
+                        td 
+                            a(href=`/customer/update/${cust._id}`) Update 
+                            |  
+                            a(href=`/customer/delete/${cust._id}`) Delete
             else 
                 tr 
-                    td(colspan='5')No Data 
+                    td(colspan="5") No data available
